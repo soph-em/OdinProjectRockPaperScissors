@@ -1,20 +1,24 @@
 
-const rps = ["rock", "paper", "scissors"]
 
+
+//selects random from rock, paper, or scissors
 function getComputerChoice(arr) {
     const randomIndex = Math.floor(Math.random() * arr.length);
     const item = arr[randomIndex];
     return item;
 }
 
+//function for html buttons for user selection
 function playerSelection(guess) {
+    const rps = ["rock", "paper", "scissors"]
     console.log(playRound(guess,getComputerChoice(rps)))
     
 }
 
-
+//to keep running count
 let playerScore = 0;
 let computerScore = 0;
+
 
 function playRound(playerSelection,result) {
     let text = ''
@@ -48,7 +52,7 @@ function playRound(playerSelection,result) {
         text = "You Lose! Scissors beats Paper!"
     }
     let element = document.getElementById('score') 
-    console.log(element)
+    // console.log(element)
     element.innerText = `Your score: ${playerScore} Computer score: ${computerScore}`
     return text
 }
@@ -56,21 +60,29 @@ function playRound(playerSelection,result) {
 function game() {
  
     for (let i = 0; i <= 5; i++) {
-        let result = getComputerChoice(rps);
-        const playerSelection = prompt("what is your guess")
-        console.log(playRound(playerSelection, result))
+        if (i < 5){
+            playRound()
+            let result = getComputerChoice(rps);
+            let playerSelection = playerSelection()
+            // const playerSelection = prompt("what is your guess")
+            console.log(playRound(playerSelection, result))
+        }
+        else if (i == 5){
+            
+            if (playerScore > computerScore){
+                console.log("You win this round!")
+            }
+            else if (computerScore > playerScore){
+                console.log("Computer wins this round!")
+            }
+            else {
+                console.log("You drew!")
+            }
+        }
+        }
         
-     }
-     if (playerScore > computerScore){
-        console.log("You win this round!")
-     }
-     else if (computerScore > playerScore){
-        console.log("Computer wins this round!")
-     }
-     else {
-        console.log("You drew!")
-     }
+     };
+     
 
-}
 
-// game(playRound)
+
